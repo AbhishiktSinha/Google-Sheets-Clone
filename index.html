@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./sheets-favicon-blue.png" type="image/x-icon">
+  <link rel="stylesheet" href="sheet.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <header id="title-bar">
+    <div class="title-logo-container">
+      <img src="./sheets-logo-blue.png" alt="logo" draggable="false">
+    </div>
+    <div class="title-and-save-container">
+      <!-- <input class="document-title" value="Untitled document"> -->
+      <div class="document-title" contenteditable="true">Untitled Document</div>
+      <div id="save" title="Save progress">save</div>
+    </div>
+  </header>
+
+  <div id="options">
+
+    <form class="form">
+      <select name="fontFamily" class="fontFamilySelect">
+        <option value="Segoe UI">Segoe UI</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Arial">Arial</option>
+        <option value="Impact">Impact</option>
+      </select>
+
+      <input class="input" type="number" name="fontSize" min="8" max="32" value="16" />
+
+      <div class="text-formatting-options-container">
+        <div>
+          <input type="checkbox" id="bold" name="isBold" />
+          <label for="bold" class="material-icons hoverable">format_bold</label>
+        </div>
+  
+        <div>
+          <input type="checkbox" id="italic" name="isItalic" />
+          <label class="material-icons hoverable" for="italic"> format_italic </label>
+        </div>
+  
+        <div>
+          <input type="checkbox" id="underline" name="isUnderline" />
+          <label class="material-icons hoverable" for="underline">
+            format_underlined
+          </label>
+        </div>
+      </div>
+
+      <div class="alignment-options-container">
+        <input type="radio" name="align" value="left" id="left" checked />
+        <label class="material-icons hoverable" for="left"> format_align_left </label>
+        <input type="radio" name="align" value="center" id="center" />
+        <label class="material-icons hoverable" for="center">
+          format_align_center
+        </label>
+        <input type="radio" name="align" value="right" id="right" />
+        <label class="material-icons hoverable" for="right"> format_align_right </label>
+      </div>
+
+      <div class="color-picker-container">
+        <input type="color" name="textColor" id="textcolor" value="#151515" />
+        <label for="textcolor" class="material-icons hoverable">format_color_text</label>
+      </div>
+
+      <div class="background-color-picker-container">
+        <input type="color" value="#e3e3e3" name="bgColor" id="bgcolor" />
+        <label for="bgcolor" class="material-icons hoverable">format_color_fill</label>
+      </div>
+
+      <div class="import-export-container">
+        <div id="export" title="Export file" class="material-icons hoverable">cloud_download</div>
+        <div id="import" title="Import a file" class="material-icons hoverable">cloud_upload</div>
+      </div>
+      
+    </form>
+  </div>
+
+  <main>
+
+    <div class="active-cell-container">
+      <form method="get">
+        <div class="active-cell">null</div>
+        <input type="text" placeholder="f ( x )">
+      </form>
+    </div>
+
+
+    <div class="sheet-container">
+
+      <div class="header-row">
+        <div class="header-cell0"></div>
+      </div>
+
+
+      <div class="sheet-body">
+
+        <div class="sNo-column"></div>
+
+        <div class="cells-container"></div>
+
+      </div>
+
+      <div class="add-rows-container">
+        <form method="post" class="add-rows-form">
+          <button type="submit">Add</button>
+          <input name="numberOfRows" type="number" min="10" max="500" value="100" step="10">
+          <p>more rows at the bottom</p>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="all-sheets-container">
+
+      <div class="inner-container">
+
+        <div class="buttons-container">
+          <button class="add-sheet-button material-icons">add</button>
+        </div>
+        <div class="sheets-bookmark-container">
+          <button class="sheet-bookmark-button active" id="bookmark_sheet-1">Sheet 1</button>
+        </div>
+      </div>
+    </div>
+
+    
+  </main>
+
+</body>
+
+<script src="index.js"></script>
+<script src="funcitonality.js"></script>
+<script src="sheet.js"></script>
+<script src="document.js"></script>
+<script src="file-handling.js"></script>
+
+</html>

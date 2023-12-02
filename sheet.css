@@ -1,0 +1,371 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Segoe UI';    
+
+    color: var(--fontColorLight);
+}
+
+:root {
+    --borderLight : #d2d2d2;
+    
+    --backgroundLight : #ffffff;    
+    --backgroundDark : #181818;
+
+    --fontColorLight : #151515;
+
+    --scrollbarColorLight: #BDC1C6;
+
+}
+button {
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;    
+
+    /* padding-block: 5px; */
+}
+
+.sheet-container {    
+    
+    width: 100vw;
+    height: 68.5vh;
+    margin-inline: auto;
+
+    font-size: 14px;
+    color: var(--fontColorLight);
+
+    background: var(--backgroundLight);
+    border: 1px solid var(--borderLight);
+    
+    overflow: scroll;
+    /* border: 1px solid red; */
+    
+    position: relative;
+    scroll-behavior: smooth;
+    
+}
+.sheet-container::-webkit-scrollbar{
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+}
+.sheet-container::-webkit-scrollbar-track-piece{
+    background: transparent;
+}
+.sheet-container::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+.sheet-container::-webkit-scrollbar-thumb {
+    
+    background-color: var(--scrollbarColorLight);
+    border-radius: 8px;
+}
+
+.header-row {
+    
+    height: 30px;
+    width: fit-content;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    background-color: var(--backgroundLight);
+    
+    position: sticky;
+    top: 0px;
+
+
+    z-index: 1000;
+    
+}
+
+
+.header-cell {
+    min-width: 185px !important;
+    height: 100%;
+    /* z-index: 500; */
+    
+    border: 0.1px solid var(--borderLight);
+    
+    border-collapse: collapse;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header-cell0 {
+    min-width: 26px !important;
+    height: 100%;
+    
+    position: sticky;
+    /* top: 0px; */
+    left: 0px;
+    
+    background:  #f1f1ff !important;
+    border: 0.1px solid var(--borderLight);
+    /* border: none ; */
+
+    z-index: 1200;
+}
+
+.sheet-body {
+    min-width: fit-content;
+    
+    display: grid;
+    grid-template-columns: 26px auto;
+    
+}
+.sNo-column {
+
+    max-width: 26px;
+    display: flex;        
+    flex-direction: column;
+    justify-content: start;
+
+
+    position: sticky;
+    left: 0;
+    top: 0px;
+    
+    background-color: var(--backgroundLight);
+
+}
+.sNo-cell {
+    width: 100%;
+    min-height: 26px;
+    
+    border: 0.1px solid var(--borderLight);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* z-index should be lower than header-cell0 */
+    z-index: 500;
+}
+
+.row {
+    min-height: 26px;
+    min-width: fit-content;
+    display: flex;
+    justify-content: start;    
+}
+
+.cell {
+    min-width: 185px;
+    max-width: 185px;
+    min-height: 100%;
+
+    border: 0.1px solid var(--borderLight);
+
+    color: var(--fontColorLight);
+    background-color: var(--backgroundLight);
+
+    font-size: 16;
+    padding: 1px 2px;
+
+    
+}
+    
+.cell:focus {
+    border: 2px solid dodgerblue;
+    outline: none;
+}
+
+
+.add-rows-container {   
+    background: #fafaf8; 
+    
+    height: 75px;
+    width: 100%;
+    padding: 8px;
+    
+    position: sticky;
+    left: 0;
+    >.add-rows-form {
+        width: 100%;
+        height: 100%;
+
+        padding-inline: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: start;
+
+        column-gap: 15px;
+
+
+        >button {
+            width: 60px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 25px;
+            border: none;
+            background-color: transparent;
+
+            color: #1c7bda;
+            font-size: 16px;
+        }
+        >input {
+            width: 100px;
+            height: 35px;
+            border-radius: 8px;
+            border: 1px solid grey;
+            outline: none;
+
+            padding: 4px;
+            font-size: 18px;
+        }
+        >p{
+            font-size: 16px;
+        }
+    }
+}
+.add-rows-form > button:hover{
+    background-color: #e6edf5;
+    border: 1px solid #c6c6c6;
+}
+
+.active-cell-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 5px;
+
+    cursor: default;
+
+    margin-block-end: 10px;
+
+    >form {
+        width: 100%;
+        height: 100%;
+
+        padding-block: 5px;
+        min-width: fit-content;
+        
+        display: flex;
+        justify-content: left;
+
+        column-gap: 14px;
+
+        >input {
+            flex-grow: 1;
+            padding: 3px;   
+            outline: none;        
+        }
+        >div {
+            /* flex-grow: 0.05; */
+            width: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+
+            background: #f1f1ff;
+            border-radius: 5px;
+        }
+
+    }
+}
+.highlight {
+    border: 2px solid dodgerblue;
+}
+
+
+.all-sheets-container {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+
+    height: 7vh;
+    width: 100%;
+    
+    padding-bottom: 3px;
+
+    >.inner-container {
+        display: flex;
+        width: 80%;
+        height: 80%;
+
+        align-items: end;
+        justify-content: start;
+
+        >.buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+
+            padding-block-end: 3px;
+            
+            flex-grow: 0.02;
+            height: 100%;
+            
+            >.add-sheet-button {
+                
+                border-radius: 50%;
+                background: none;
+                border: none;
+
+                color: rgb(72, 72, 72);
+            }
+        }
+        >.sheets-bookmark-container {
+            flex-grow: 0.95;
+            height: 100%;
+
+            display: flex;
+            justify-content: start;
+            align-items: end;
+
+            column-gap: 4px;
+        }
+    }
+}
+.add-sheet-button:hover {
+    background-color: #f2f3f4 !important;
+}
+.add-sheet-button:active {
+    color: #0b57d0 !important;
+}
+.sheet-bookmark-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    padding-inline: 10px;
+
+    font-size: 16px;
+    color: rgb(72, 72, 72);
+    font-family: 'Segoe UI';
+    font-weight: 500;
+
+    background-color: transparent;
+    border: none;
+
+    border-radius: 8px 8px 0 0;
+
+}
+.sheet-bookmark-button:hover {
+    background-color: #eef2f3;
+}
+.sheet-bookmark-button:active {
+    color: #0b57d0;
+}
+.sheet-bookmark-button.active {
+    color: #0b57d0;
+    background-color: #dde6f0;
+}
+
