@@ -2,20 +2,38 @@
 const sheetBody = document.querySelector(".sheet-body");
 
 
-const sheetArray = [];
-let currSheet = 1;
-let totalSheets = 1;
+let sheetArray = [];
+
+const sheetsBookmarkContainer = document.querySelector(".sheets-bookmark-container");
+
+// no sheets to start with
+let currSheet = 0;
+let totalSheets = 0;
 const defaultRows = 50;
+
+
+function getDocumentData() {
+    return sheetArray;
+}
+function setDocumentData(documentData) {
+    sheetArray = [...documentData];
+}
+function setTotalSheets(n) {
+    totalSheets = n;
+}
+
+addNewSheet();
 
 sheetArray[currSheet] = { rows: defaultRows, index: currSheet, sheetData: getState() };
 
 // autosave every 1 minute
 // setInterval(updateSheetData, 60000);
+document.querySelector("#save").addEventListener("click", updateSheetData);
 function updateSheetData() {
-    sheetArray[currSheet].sheetData = {...getState()};
+    sheetArray[currSheet].sheetData = { ...getState() };
 }
 
-const sheetsBookmarkContainer = document.querySelector(".sheets-bookmark-container");
+
 sheetsBookmarkContainer.addEventListener("click", (event) => {
 
     if (event.target.className === 'sheet-bookmark-button') {
@@ -44,29 +62,38 @@ function addNewSheet() {
 function switchToSheet(sheetIdNumber) {
 
     // save the previous sheet
-    updateSheetData();
-    
-    
+    if (currSheet != 0) {
+
+        updateSheetData();
+    }
+
+
     // remove class "active" from previously selected sheet and apply it to currently clicked sheet
-    const prevActiveButton = document.getElementById(`bookmark_sheet-${currSheet}`);
-    prevActiveButton.classList.remove("active");
+    if (currSheet != 0) {
+
+        const prevActiveButton = document.getElementById(`bookmark_sheet-${currSheet}`);
+        prevActiveButton.classList.remove("active");
+    }
+    
+    // hide the previous sheet by removing sNo-columns and cellContainer from the DOM
+    if (currSheet != 0) {
+        
+        const sheetBodySNoContainer = document.querySelector(".sNo-column");
+        console.log("hiding: prev sNo-columns: ", sheetBodySNoContainer)
+        const sheetBodyCellsContainer = document.querySelector(".cells-container");
+        console.log("hiding: prev cells-container: ", sheetBodyCellsContainer)
+
+        sheetBody.removeChild(sheetBodySNoContainer);
+        sheetBody.removeChild(sheetBodyCellsContainer);
+    }
+    
     // "active" the selected sheet bookmark
     document.getElementById(`bookmark_sheet-${sheetIdNumber}`).classList.add("active");
-    
 
     // make this sheet's index as the currSheet"
     currSheet = Number(sheetIdNumber);
 
-
-    // hide the previous sheet by removing sNo-columns and cellContainer from the DOM
-    const sheetBodySNoContainer = document.querySelector(".sNo-column");
-    console.log("hiding: prev sNo-columns: ", sheetBodySNoContainer)
-    const sheetBodyCellsContainer = document.querySelector(".cells-container");
-    console.log("hiding: prev cells-container: ", sheetBodyCellsContainer)
-
-    sheetBody.removeChild(sheetBodySNoContainer);
-    sheetBody.removeChild(sheetBodyCellsContainer);
-
+ 
     // add empty sNo-column and empty cells-container to the sheetBody
     const defaultSNoColumn = document.createElement("div");
     defaultSNoColumn.className = "sNo-column";
@@ -76,7 +103,7 @@ function switchToSheet(sheetIdNumber) {
     sheetBody.append(defaultSNoColumn, defaultCellsContainer);
 
     console.log("added empty sheetbody children", sheetBody);
-    
+
     // reset the state object
     setState(sheetArray[currSheet].sheetData);
     // add cells and sNo-cells by invoking method : 
@@ -91,7 +118,7 @@ function switchToSheet(sheetIdNumber) {
 // create the basic layout for the document, applicable accross all sheets, leave out sheetBody {sNoColumn, and cellsContainer}
 const headerRow = document.querySelector(".header-row");
 createHeaderRow();
-createCells(sheetArray[currSheet]);
+// createCells(sheetArray[currSheet]);
 
 
 function createHeaderRow() {
@@ -127,10 +154,27 @@ addRowsForm.addEventListener("submit", (event) => {
 });
 
 
+// remove all existing data to import new data
+function removeExistingData() {
 
-/* now focus on sheet specific operations:
-    1. create sheet 1
-*/
+    // remove all sheet bookmarks 
+    for (let bookmark of sheetsBookmarkContainer.children) {
+        sheetsBookmarkContainer.removeChild(bookmark);
+    }
 
-// create sheetBody for sheet1
+    // clear sheetbody 
+    const sheetBodySNoContainer = document.querySelector(".sNo-column");
+    console.log("removing: prev sNo-columns: ", sheetBodySNoContainer)
+    const sheetBodyCellsContainer = document.querySelector(".cells-container");
+    console.log("removing: prev cells-container: ", sheetBodyCellsContainer)
 
+    sheetBody.removeChild(sheetBodySNoContainer);
+    sheetBody.removeChild(sheetBodyCellsContainer);
+
+
+    // delete all data in sheetArray
+    sheetArray = [];
+    totalSheets = 0;
+    currSheet = 0;
+
+}

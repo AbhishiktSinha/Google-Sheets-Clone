@@ -26,3 +26,7 @@ function updateTitle() {
     console.log("title change to : ", sheetTitle.innerText);
     document.title = sheetTitle.innerText;
 }
+function setTItle(newTitle) {
+    sheetTitle.innerText = newTitle;
+    updateTitle();
+}

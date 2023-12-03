@@ -243,6 +243,13 @@ label {
         padding-bottom: 1px;
     }
 }
+#import-container {
+    >input[type="file"] {
+        height: 0;
+        width: 0;
+        display: none;
+    }
+}
 
 
 input[type="color"]{
@@ -266,7 +273,7 @@ input:checked + label {
 }
 
 .hoverable:hover{
-    color: #2888AF;
+    color: #2888AF !important;
 }
 
 

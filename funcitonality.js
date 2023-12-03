@@ -125,12 +125,16 @@ function onCellInput(event) {
     // console.log(`state[${activeCellIndicator.innerText}]: `, state[event.target.id])
 }
 
-function onChangeFormData() {
+function onChangeFormData(event) {
     // when styling form data is changed for any cell,
     // apply the corresponding style changes to that cell
     // update the styling data in state object against the object of that cell
 
     //check if any cell is selected
+    
+    if(event.target.id==="file-input") {
+        return;
+    }
 
 
     if (activeCellIndicator.innerText === 'null') {
@@ -235,4 +239,6 @@ function getState() {
 }
 function setState(sheetState) {
     state = {...sheetState};
+    resetForm(defaultStyle);
+    resetActiveCell();
 }

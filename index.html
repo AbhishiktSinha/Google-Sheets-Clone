@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="sheet.css">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
   <title>Document</title>
 </head>
 
@@ -21,7 +22,7 @@
     <div class="title-and-save-container">
       <!-- <input class="document-title" value="Untitled document"> -->
       <div class="document-title" contenteditable="true">Untitled Document</div>
-      <div id="save" title="Save progress">save</div>
+      <div id="save" title="Save progress" class="material-symbols-outlined">cloud_upload</div>
     </div>
   </header>
 
@@ -78,8 +79,11 @@
       </div>
 
       <div class="import-export-container">
-        <div id="export" title="Export file" class="material-icons hoverable">cloud_download</div>
-        <div id="import" title="Import a file" class="material-icons hoverable">cloud_upload</div>
+        <div id="export" title="Export file" class="material-icons hoverable">file_upload</div>
+        <div id="import-container">
+          <input type="file" id="file-input" accept=".txt">
+          <label for="file-input" id="import" title="Import a file" class="material-icons hoverable">file_download</label>
+        </div>
       </div>
       
     </form>
@@ -104,9 +108,9 @@
 
       <div class="sheet-body">
 
-        <div class="sNo-column"></div>
+        <!-- <div class="sNo-column"></div>
 
-        <div class="cells-container"></div>
+        <div class="cells-container"></div> -->
 
       </div>
 
@@ -128,7 +132,7 @@
           <button class="add-sheet-button material-icons">add</button>
         </div>
         <div class="sheets-bookmark-container">
-          <button class="sheet-bookmark-button active" id="bookmark_sheet-1">Sheet 1</button>
+          <!-- <button class="sheet-bookmark-button active" id="bookmark_sheet-1">Sheet 1</button> -->
         </div>
       </div>
     </div>
